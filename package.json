@@ -1,0 +1,78 @@
+{
+  "name": "vscode-view-asset-codelens",
+  "displayName": "vscode-view-asset-codelens",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "title": "Enable",
+        "command": "vscode-view-asset-codelens.enable",
+        "category": "View Asset Extension"
+      },
+      {
+        "title": "Disable",
+        "command": "vscode-view-asset-codelens.disable",
+        "category": "View Asset Extension"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "vscode-view-asset-codelens.enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "vscode-view-asset-codelens.assetRegex": {
+          "type": "string",
+          "default": "\\.toMatchScreenshot\\(\\s*'(?<asset>[^']+)"
+        },
+        "vscode-view-asset-codelens.assetRegexFlags": {
+          "type": "string",
+          "default": "sg"
+        },
+        "vscode-view-asset-codelens.assetValueRegexGroupKey": {
+          "type": "string",
+          "default": "asset"
+        },
+		"vscode-view-asset-codelens.assetUriPattern": {
+			"type": "string",
+		  "default": "https://imgur.com/gallery/{id}"
+		}
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "@vscode/test-electron": "^2.1.3",
+    "eslint": "^8.11.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.2",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "regexp-match-indices": "^1.0.2"
+  }
+}
